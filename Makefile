@@ -1,14 +1,15 @@
 CPP      := g++
 CPPFLAGS := -pthread
-SRC      := bitmap.cpp
+SRC      := bitmap.cpp utils.cpp
+HDR      := utils.hpp
 
 all: gather barrier
 
-gather: $(SRC)
-	$(CPP) $(CPPFLAGS) $(SRC) -o $@
+gather: $(SRC) $(HDR)
+	$(CPP) $(CPPFLAGS) $(SRC) -o gather
 
-barrier: $(SRC) 
-	$(CPP) $(CPPFLAGS) -DUSE_BARRIER $(SRC) -o $@
+barrier: $(SRC) $(HDR)
+	$(CPP) $(CPPFLAGS) -DUSE_BARRIER $(SRC) -o barrier
 
 clean:
 	rm -f gather barrier 
